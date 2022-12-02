@@ -1,5 +1,6 @@
 enable_testing()
 include(FetchContent)
+include(GoogleTest)
 
 FetchContent_Declare(
   googletest
@@ -13,14 +14,15 @@ target_link_libraries(GTest::GTest INTERFACE gtest_main)
 add_executable(${PROJECT_NAME}_Test cpp/main.cpp)
 
 set(TESTS
+    cpp/Test_Wrestler.cpp
     )
 
 add_library(Testing ${TESTS})
 target_link_libraries(${PROJECT_NAME}_Test Testing)
 
 target_link_libraries(
-    ${PROJECT_NAME}_TEST
-    GTest::GTest
+    ${PROJECT_NAME}_Test
+    GTest::gtest_main
     Tournament
     )
 
