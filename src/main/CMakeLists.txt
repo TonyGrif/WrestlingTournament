@@ -2,6 +2,7 @@ add_executable(${PROJECT_NAME} cpp/main.cpp)
 
 set(SOURCES
 	cpp/Wrestler.cpp
+	cpp/Team.cpp
 	)
 
 add_library(Tournament ${SOURCES})
