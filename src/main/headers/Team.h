@@ -8,6 +8,14 @@
 
 #include "Wrestler.h"
 
+/**
+ * @brief Static integer to set each individual team ID number
+ * 
+ * Incremented by 100 each time.
+ * All team members will use this as a starting point for their own numbers.
+ */
+static int TEAM_ID_NUMBER = 100;
+
 class Team
 {
     public:
@@ -88,6 +96,15 @@ class Team
             return this->losses.results;
         }
 
+        /**
+         * @brief Return this Team's identification number.
+         * 
+         * @return Integer.
+         */
+        int TeamID() const {
+            return this->teamID;
+        }
+
     private:
         /**
          * @brief Stores the information relating to one weight class.
@@ -154,6 +171,13 @@ class Team
          * @brief Stores the number of loses this team has had.
          */
         Records losses;
+
+        /**
+         * @brief Team's identification number.
+         * 
+         * Must be determined at creation.
+         */
+        const int teamID;
 
         /**
          * @brief Default random engine for Team class.

@@ -6,6 +6,11 @@ TEST(TestTeam, TestDefaultConstructor)
 {
     Team defTeam;
 
+    ASSERT_EQ(defTeam.TeamID(), 100);
+
+    Team secTeam;
+    ASSERT_EQ(secTeam.TeamID(), 200);
+
     FAIL();
 }
 
