@@ -13,6 +13,23 @@ TEST(TestWrestler, TestDefaultConstructor)
     FAIL() << "Weight range not implemented";
 
     ASSERT_TRUE(defWrestler.Ability() > -1);
+
+    ASSERT_EQ(defWrestler.ID(), 0);
+}
+
+TEST(TestWrestler, TestNonDefaultConstructor)
+{
+    Wrestler idWrestler(204);
+
+    ASSERT_NE(idWrestler.Age(), 0);
+    ASSERT_TRUE(idWrestler.Age() >= 13 || idWrestler.Age() <= 17);
+
+    ASSERT_TRUE(idWrestler.Weight() > 0);
+    FAIL() << "Weight range not implemented";
+
+    ASSERT_TRUE(idWrestler.Ability() > -1);
+
+    ASSERT_EQ(idWrestler.ID(), 204);
 }
 
 TEST(TestWrestler, TestAge)
@@ -64,6 +81,16 @@ TEST(TestWrestler, TestWeight)
     defWrestler.Weight(-20);
     ASSERT_NE(defWrestler.Weight(), -20);
     ASSERT_EQ(defWrestler.Weight(), 100);
+}
+
+TEST(TestWrestler, TestID)
+{
+    Wrestler defWrestler;
+
+    ASSERT_TRUE(defWrestler.ID() == 0);
+
+    defWrestler.ID(103);
+    ASSERT_TRUE(defWrestler.ID() == 103);
 }
 
 TEST(TestWrestler, TestLessThan)

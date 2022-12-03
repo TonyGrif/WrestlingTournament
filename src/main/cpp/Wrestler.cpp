@@ -15,6 +15,25 @@ Wrestler::Wrestler()
 
     std::normal_distribution<> nd{100, 15};
     this->Ability(nd(engine));
+
+    this->ID(0);
+}
+
+Wrestler::Wrestler(int id)
+{
+    std::uniform_int_distribution<> uid(13, 17);
+    
+    // Throw away value
+    uid(engine);
+    this->Age(uid(engine));
+
+    // Just for now
+    this->Weight(120);
+
+    std::normal_distribution<> nd{100, 15};
+    this->Ability(nd(engine));
+
+    this->ID(id);
 }
 
 std::string Wrestler::toString() const

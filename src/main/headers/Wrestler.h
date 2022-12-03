@@ -12,10 +12,15 @@ class Wrestler
     public:
         /**
          * @brief Construct a new Wrestler object.
-         * 
-         * Age = 13-17; Ability Score = 100 +- 15.
          */
         Wrestler();
+
+        /**
+         * @brief Construct a new Wrestler object.
+         * 
+         * @param id Integer to set the id.
+         */
+        Wrestler(int id);
 
         /**
          * @brief Set the age of this Wrestler.
@@ -81,6 +86,24 @@ class Wrestler
         }
 
         /**
+         * @brief Set the ID of this Wrestler.
+         * 
+         * @param i Integer.
+         */
+        void ID(int i) {
+            this->id = i;
+        }
+
+        /**
+         * @brief Return the ID of this Wrestler.
+         * 
+         * @return Integer.
+         */
+        int ID() const {
+            return this->id;
+        }
+
+        /**
          * @brief Overload the less than operator.
          * 
          * Wrestlers will be sorted based on their ability score.
@@ -119,6 +142,13 @@ class Wrestler
          * @brief Determines a wrestler's skill.
          */
         int abilityScore;
+
+        /**
+         * @brief Wrestler's identifiction.
+         * 
+         * Determined based on the team this wrestler is in.
+         */
+        int id;
 
         /**
          * @brief Default engine utilized by the constuctor.
