@@ -32,22 +32,60 @@ class Team
             return this->weightClasses.size();
         }
 
+        /**
+         * @brief Return the number of wins this Team has.
+         * 
+         * @return Integer.
+         */
         int GetWins() const {
             return this->wins.count;
         }
 
+        /**
+         * @brief Return the number of losses this Team has.
+         * 
+         * @return Integer.
+         */
         int GetLosses() const {
             return this->losses.count;
         }
 
-        void IncrementWins(Wrestler losser) {
+        /**
+         * @brief Increment the wins counter and add the ID to a list.
+         * 
+         * @param losser the ID of the losser of the match.
+         */
+        void IncrementWins(int losser) {
             this->wins.count++;
             this->wins.results.push_back(losser);
         }
 
-        void IncrementLosses(Wrestler winner) {
+        /**
+         * @brief Increment the losses counter and add the ID to a list.
+         * 
+         * @param winner the ID of the winner of the match.
+         */
+        void IncrementLosses(int winner) {
             this->losses.count++;
             this->losses.results.push_back(winner);
+        }
+
+        /**
+         * @brief Return the wins id list.
+         * 
+         * @return const list of id numbers.
+         */
+        const std::list<int> GetWinIDs() const {
+            return this->wins.results;
+        }
+
+        /**
+         * @brief Return the loss id list.
+         * 
+         * @return const list of id numbers.
+         */
+        const std::list<int> GetLossIDs() const {
+            return this->losses.results;
         }
 
     private:
@@ -104,7 +142,7 @@ class Team
             /**
              * @brief List of who was beaten/lost to.
              */
-            std::list<Wrestler> results;
+            std::list<int> results;
         };
 
         /**
