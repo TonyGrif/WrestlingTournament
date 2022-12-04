@@ -19,6 +19,8 @@ static int TEAM_ID_NUMBER = 100;
 class Team
 {
     public:
+        using ID_Collection = std::list<int>;
+
         /**
          * @brief Construct a new Team object.
          */
@@ -83,7 +85,7 @@ class Team
          * 
          * @return const list of id numbers.
          */
-        const std::list<int> GetWinIDs() const {
+        const ID_Collection GetWinIDs() const {
             return this->wins.results;
         }
 
@@ -92,8 +94,17 @@ class Team
          * 
          * @return const list of id numbers.
          */
-        const std::list<int> GetLossIDs() const {
+        const ID_Collection GetLossIDs() const {
             return this->losses.results;
+        }
+
+        /**
+         * @brief Return the number of Wrestlers on this Team.
+         * 
+         * @return Integer.
+         */
+        int NumberOfWrestlers() const {
+            return this->numOfWrestlers;
         }
 
         /**
@@ -159,7 +170,7 @@ class Team
             /**
              * @brief List of who was beaten/lost to.
              */
-            std::list<int> results;
+            ID_Collection results;
         };
 
         /**
@@ -178,6 +189,11 @@ class Team
          * Must be determined at creation.
          */
         const int teamID;
+
+        /**
+         * @brief The number of Wrestlers contained in this Team.
+         */
+        int numOfWrestlers;
 
         /**
          * @brief Default random engine for Team class.

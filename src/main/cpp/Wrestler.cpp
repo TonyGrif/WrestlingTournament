@@ -10,7 +10,6 @@ Wrestler::Wrestler()
     uid(engine);
     this->Age(uid(engine));
 
-    // Just for now
     this->Weight(this->GenerateWeight());
 
     std::normal_distribution<> nd{100, 15};
@@ -27,7 +26,6 @@ Wrestler::Wrestler(int id)
     uid(engine);
     this->Age(uid(engine));
 
-    // Just for now
     this->Weight(this->GenerateWeight());
 
     std::normal_distribution<> nd{100, 15};
