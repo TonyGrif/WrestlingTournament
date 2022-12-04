@@ -30,6 +30,20 @@ TEST(TestWrestler, TestNonDefaultConstructor)
     ASSERT_EQ(idWrestler.ID(), 204);
 }
 
+TEST(TestWrestler, TestBothConstructor)
+{
+    Wrestler w(407, 120);
+
+    ASSERT_NE(w.Age(), 0);
+    ASSERT_TRUE(w.Age() >= 13 || w.Age() <= 17);
+
+    ASSERT_TRUE(w.Weight() > 0);
+
+    ASSERT_TRUE(w.Ability() > -1);
+
+    ASSERT_EQ(w.ID(), 407);
+}
+
 TEST(TestWrestler, TestAge)
 {
     Wrestler defWrestler;

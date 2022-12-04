@@ -34,6 +34,22 @@ Wrestler::Wrestler(int id)
     this->ID(id);
 }
 
+Wrestler::Wrestler(int id, int w)
+{
+    std::uniform_int_distribution<> uid(13, 17);
+    
+    // Throw away value
+    uid(engine);
+    this->Age(uid(engine));
+
+    this->Weight(w);
+
+    std::normal_distribution<> nd{100, 15};
+    this->Ability(nd(engine));
+
+    this->ID(id);
+}
+
 int Wrestler::GenerateWeight() const
 {
     int avWeight = -1;

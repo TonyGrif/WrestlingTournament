@@ -23,6 +23,14 @@ class Wrestler
         Wrestler(int id);
 
         /**
+         * @brief Construct a new Wrestler object.
+         * 
+         * @param id Integer to set the id.
+         * @param w Integer to set the weight.
+         */
+        Wrestler(int id, int w);
+
+        /**
          * @brief Set the age of this Wrestler.
          * 
          * Set the age of this Wrestler and ensure if falls within the desired range (13 to 17).

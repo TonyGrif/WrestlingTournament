@@ -13,16 +13,17 @@ TEST(TestTeam, TestDefaultConstructor)
     ASSERT_EQ(secTeam.TeamID(), 200);
     ASSERT_NE(secTeam.NumberOfWrestlers(), 0);
 
-    FAIL();
+    for(int x = 0; x < defTeam.GetNumberOfWeightClasses(); x++)
+    {
+        ASSERT_NE(defTeam.GetWrestlersAt(x).size(), 0);
+    }
 }
 
 TEST(TestTeam, TestInitVector)
 {
     Team defTeam;
 
-    //ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 14);
-    FAIL() << "Need more info on if there is a range or one number";
-
+    ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
 }
 
 TEST(TestTeam, TestAddWrestler)
@@ -33,6 +34,8 @@ TEST(TestTeam, TestAddWrestler)
     int startingNum = defTeam.NumberOfWrestlers();
     defTeam.AddWrestler(*addWrestler);
     ASSERT_EQ(startingNum+1, defTeam.NumberOfWrestlers());
+
+    FAIL() << "Not added to collection yet";
 }
 
 TEST(TestTeam, TestRecords)

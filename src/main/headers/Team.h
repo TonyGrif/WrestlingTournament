@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <queue>
+#include <cstdlib>
 
 #include <list>
 
@@ -20,6 +21,7 @@ class Team
 {
     public:
         using ID_Collection = std::list<int>;
+        using Wrestler_Collection = std::priority_queue<Wrestler>;
 
         /**
          * @brief Construct a new Team object.
@@ -40,6 +42,10 @@ class Team
          */
         int GetNumberOfWeightClasses() const {
             return this->weightClasses.size();
+        }
+
+        const Wrestler_Collection GetWrestlersAt(int loc) const {
+            return this->weightClasses[loc].pq;
         }
 
         /**
@@ -125,30 +131,23 @@ class Team
             /**
              * @brief Construct a new Weight Class object.
              * 
-             * @param min Minimum weight.
-             * @param max Maximum weight.
+             * @param w Weight for this Weight Class.
              */
-            WeightClass(int min, int max) {
-                this->minWeight = min;
-                this->maxWeight = max;
+            WeightClass(int w) {
+                this->weight = w;
             }
 
             /**
              * @brief Stores the minimum weight of this weight class.
              */
-            int minWeight;
-
-            /**
-             * @brief Stores the maximum weight of this weight class.
-             */
-            int maxWeight;
+            int weight;
 
             /**
              * @brief Priority queue of the Wrestlers making up this class.
              * 
              * Wrestlers are stored based on ability score.
              */
-            std::priority_queue<Wrestler> pq;
+            Wrestler_Collection pq;
         };
 
         std::vector<WeightClass> weightClasses;
@@ -204,8 +203,17 @@ class Team
          * @brief Initialize the vector based on the weight classes provided.
          * 
          * Not at all efficient, but unable to do another way.
+         * BETTER WAY - read from text file, gather information from there.
          */
         void InitializeVector();
+
+        /**
+         * @brief Find the correct weight class for supplied Wrestler.
+         * 
+         * @param w Wrestler object.
+         * @return Integer, location in the Weight Class collection.
+         */
+        int FindWeightClass(const Wrestler& w) const;
 };
 
 #endif
