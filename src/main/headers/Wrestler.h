@@ -53,7 +53,7 @@ class Wrestler
          * @param w Integer.
          */
         void Weight(int w) {
-            w <= 0 ? this->weight = 100 : this->weight = w;
+            w <= 0 ? this->weight = 121 : this->weight = w;
         }
 
         /**
@@ -124,6 +124,13 @@ class Wrestler
         std::string toString() const;
 
     private:
+        /**
+         * @brief Generate a standard weight based on the age.
+         * 
+         * @return Integer.
+         */
+        int GenerateWeight() const;
+
         /**
          * @brief Wrestler's age.
          * 

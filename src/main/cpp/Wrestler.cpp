@@ -11,7 +11,7 @@ Wrestler::Wrestler()
     this->Age(uid(engine));
 
     // Just for now
-    this->Weight(120);
+    this->Weight(this->GenerateWeight());
 
     std::normal_distribution<> nd{100, 15};
     this->Ability(nd(engine));
@@ -28,7 +28,7 @@ Wrestler::Wrestler(int id)
     this->Age(uid(engine));
 
     // Just for now
-    this->Weight(120);
+    this->Weight(this->GenerateWeight());
 
     std::normal_distribution<> nd{100, 15};
     this->Ability(nd(engine));
@@ -36,11 +36,39 @@ Wrestler::Wrestler(int id)
     this->ID(id);
 }
 
+int Wrestler::GenerateWeight() const
+{
+    int avWeight = -1;
+
+    switch(this->Age())
+    {
+        case 13:
+            avWeight = 101;
+            break;
+        case 14:
+            avWeight = 110;
+            break;
+        case 15:
+            avWeight = 121;
+            break;
+        case 16:
+            avWeight = 132;
+            break;
+        case 17:
+            avWeight = 145;
+            break;
+    }
+
+    std::normal_distribution<> nd(avWeight, 15);
+    return nd(engine);
+}
+
 std::string Wrestler::toString() const
 {
     std::string retString;
 
-    retString += "PLACEHOLDER NAME - ";
+    retString += "#";
+    retString.append(std::to_string(this->ID()));
     retString += "Age: ";
     retString.append(std::to_string(this->Age()));
 

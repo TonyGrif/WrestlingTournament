@@ -10,7 +10,6 @@ TEST(TestWrestler, TestDefaultConstructor)
     ASSERT_TRUE(defWrestler.Age() >= 13 || defWrestler.Age() <= 17);
 
     ASSERT_TRUE(defWrestler.Weight() > 0);
-    FAIL() << "Weight range not implemented";
 
     ASSERT_TRUE(defWrestler.Ability() > -1);
 
@@ -25,7 +24,6 @@ TEST(TestWrestler, TestNonDefaultConstructor)
     ASSERT_TRUE(idWrestler.Age() >= 13 || idWrestler.Age() <= 17);
 
     ASSERT_TRUE(idWrestler.Weight() > 0);
-    FAIL() << "Weight range not implemented";
 
     ASSERT_TRUE(idWrestler.Ability() > -1);
 
@@ -65,6 +63,7 @@ TEST(TestWrestler, TestAbility)
 
     defWrestler.Ability(-43);
     ASSERT_NE(defWrestler.Ability(), -43);
+    ASSERT_EQ(defWrestler.Ability(), 0);
 }
 
 TEST(TestWrestler, TestWeight)
@@ -80,7 +79,7 @@ TEST(TestWrestler, TestWeight)
 
     defWrestler.Weight(-20);
     ASSERT_NE(defWrestler.Weight(), -20);
-    ASSERT_EQ(defWrestler.Weight(), 100);
+    ASSERT_EQ(defWrestler.Weight(), 121);
 }
 
 TEST(TestWrestler, TestID)
@@ -112,7 +111,17 @@ TEST(TestWrestler, TestToString)
 
     std::string checkString = defWrestler.toString();
 
+    ASSERT_TRUE(checkString.find(std::to_string(defWrestler.ID())) != std::string::npos);
     ASSERT_TRUE(checkString.find(std::to_string(defWrestler.Age())) != std::string::npos);
     ASSERT_TRUE(checkString.find(std::to_string(defWrestler.Weight())) != std::string::npos);
     ASSERT_TRUE(checkString.find(std::to_string(defWrestler.Ability())) != std::string::npos);
+
+    Wrestler nonDefW(308);
+
+    std::string checkNonDefString = nonDefW.toString();
+
+    ASSERT_TRUE(checkNonDefString.find(std::to_string(nonDefW.ID())) != std::string::npos);
+    ASSERT_TRUE(checkNonDefString.find(std::to_string(nonDefW.Age())) != std::string::npos);
+    ASSERT_TRUE(checkNonDefString.find(std::to_string(nonDefW.Weight())) != std::string::npos);
+    ASSERT_TRUE(checkNonDefString.find(std::to_string(nonDefW.Ability())) != std::string::npos);
 }
