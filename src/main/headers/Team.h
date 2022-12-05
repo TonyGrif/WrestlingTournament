@@ -121,6 +121,24 @@ class Team
         }
 
         /**
+         * @brief Increment the score counter by the supplied Integer.
+         * 
+         * @param score Integer to increment by.
+         */
+        void IncrementScore(int score) {
+            score >= 0 ? this->currentScore += score : this->currentScore;
+        }
+
+        /**
+         * @brief Return the current score of this Team.
+         * 
+         * @return Integer.
+         */
+        int CurrentScore() const {
+            return this->currentScore;
+        }
+
+        /**
          * @brief Return this Team's identification number.
          * 
          * @return Integer.
@@ -191,6 +209,13 @@ class Team
          * @brief Stores the number of loses this team has had.
          */
         Records losses;
+
+        /**
+         * @brief The current score of this Team.
+         * 
+         * Resets to zero at the end of every match.
+         */
+        int currentScore;
 
         /**
          * @brief Team's identification number.

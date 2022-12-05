@@ -15,4 +15,5 @@ TEST(TestTournament, TestMatch)
     Tournament defTourn;
 
     defTourn.ConductMatch(*defTourn.GetTeamAt(0), *defTourn.GetTeamAt(1));
+    FAIL();
 }

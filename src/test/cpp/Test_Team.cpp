@@ -9,11 +9,13 @@ TEST(TestTeam, TestDefaultConstructor)
     ASSERT_EQ(defTeam.TeamID(), 100);
     ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
     ASSERT_NE(defTeam.NumberOfWrestlers(), 0);
+    ASSERT_EQ(defTeam.CurrentScore(), 0);
 
     Team secTeam;
     ASSERT_EQ(secTeam.TeamID(), 200);
     ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
     ASSERT_NE(secTeam.NumberOfWrestlers(), 0);
+    ASSERT_EQ(defTeam.CurrentScore(), 0);
 
     for(int x = 0; x < defTeam.GetNumberOfWeightClasses(); x++)
     {
@@ -113,4 +115,17 @@ TEST(TestTeam, TestRecordsIDs)
     defTeam.IncrementWins(temp->ID());
 
     ASSERT_EQ(defTeam.GetWinIDs().front(), temp->ID());
+}
+
+TEST(TestTeam, TestScore)
+{
+    Team defTeam;
+
+    ASSERT_EQ(defTeam.CurrentScore(), 0);
+
+    defTeam.IncrementScore(7);
+    ASSERT_EQ(defTeam.CurrentScore(), 7);
+
+    defTeam.IncrementScore(-6);
+    ASSERT_EQ(defTeam.CurrentScore(), 7);
 }

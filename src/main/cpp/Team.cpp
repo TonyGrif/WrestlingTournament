@@ -28,6 +28,8 @@ Team::Team()
         }
     }
 
+    this->currentScore = 0;
+
     TEAM_ID_NUMBER += 100;
 }
 
