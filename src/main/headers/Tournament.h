@@ -3,6 +3,8 @@
 
 #include "Team.h"
 
+#include <iostream>
+
 class Tournament
 {
     public:
@@ -21,7 +23,7 @@ class Tournament
          * @param one First Team.
          * @param two Second Team.
          */
-        void ConductMatch(Team one, Team two);
+        void ConductMatch(Team& one, Team& two);
 
         /**
          * @brief Get the Number Of Team objects in collection.
@@ -71,7 +73,7 @@ class Tournament
          * @param winningID the ID of the winner of the bout.
          * @param lossingID the ID of the loser of the bout.
          */
-        void AdjustRecord(int score, Team winner, Team loser, int winningID, int lossingID);
+        void AdjustRecord(int score, Team& winner, Team& loser, int winningID, int lossingID);
 
         /**
          * @brief Static engine to be used for bout conducting.s
