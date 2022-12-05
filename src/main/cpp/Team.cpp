@@ -22,7 +22,7 @@ Team::Team()
     // Ensure every weight class has at least one wrestler
     for(int x = 0; x < this->GetNumberOfWeightClasses(); x++)
     {
-        if(this->GetWrestlersAt(x).size() == 0) {
+        if(this->GetWrestlersAt(x)->size() == 0) {
             Wrestler* wrestler = new Wrestler(this->teamID + this->numOfWrestlers, 
                 this->weightClasses[x].weight);
             this->AddWrestler(*wrestler);
@@ -36,6 +36,7 @@ Team::Team()
 void Team::AddWrestler(Wrestler w)
 {
     int loc = this->FindWeightClass(w);
+    w.Weight(this->weightClasses[loc].weight);
     this->weightClasses[loc].pq.push(w);
 
     this->numOfWrestlers++;

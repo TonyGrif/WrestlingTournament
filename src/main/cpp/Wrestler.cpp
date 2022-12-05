@@ -83,7 +83,7 @@ std::string Wrestler::toString() const
 
     retString += "#";
     retString.append(std::to_string(this->ID()));
-    retString += "Age: ";
+    retString += " - Age: ";
     retString.append(std::to_string(this->Age()));
 
     retString += ", Weight: ";

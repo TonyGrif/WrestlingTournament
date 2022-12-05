@@ -125,6 +125,25 @@ class Wrestler
         }
 
         /**
+         * @brief Overload the equivalence operator.
+         * 
+         * @param lhs Another Wrestler.
+         * @return true if all variables are the same.
+         * @return false if a variable is different.
+         */
+        bool operator==(const Wrestler& lhs) const {
+            if(this->ID() == lhs.ID()
+                && this->Age() == lhs.Age()
+                && this->Ability() == lhs.Ability()
+                && this->Weight() == lhs.Weight()) {
+                    return true;
+                }
+            else {
+                return false;
+            }
+        }
+
+        /**
          * @brief Return a string representation of this Wrestler.
          * 
          * @return String.

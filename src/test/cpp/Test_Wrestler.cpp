@@ -123,6 +123,21 @@ TEST(TestWrestler, TestLessThan)
     ASSERT_FALSE(small < big);
 }
 
+TEST(TestWrestler, TestEquivalence)
+{
+    Wrestler w1, w2(30);
+
+    ASSERT_FALSE(w1 == w2);
+
+    w2.Ability(w1.Ability());
+    w2.Age(w1.Age());
+    w2.Weight(w1.Weight());
+    ASSERT_FALSE(w1 == w2);
+
+    w2.ID(w1.ID());
+    ASSERT_TRUE(w1 == w2);
+}
+
 TEST(TestWrestler, TestToString)
 {
     Wrestler defWrestler;

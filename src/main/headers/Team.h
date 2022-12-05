@@ -44,8 +44,9 @@ class Team
             return this->weightClasses.size();
         }
 
-        const Wrestler_Collection GetWrestlersAt(int loc) const {
-            return this->weightClasses[loc].pq;
+        Wrestler_Collection* GetWrestlersAt(int loc) {
+            Wrestler_Collection* wc = &this->weightClasses[loc].pq;
+            return wc;
         }
 
         /**

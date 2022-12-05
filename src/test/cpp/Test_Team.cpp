@@ -2,33 +2,42 @@
 
 #include "../../main/headers/Team.h"
 
+#include <iostream>
+
 TEST(TestTeam, TestDefaultConstructor)
 {
     Team defTeam;
 
     ASSERT_EQ(defTeam.TeamID(), 100);
-    ASSERT_NE(defTeam.NumberOfWrestlers(), 0);
     ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
+    ASSERT_NE(defTeam.NumberOfWrestlers(), 0);
 
     Team secTeam;
     ASSERT_EQ(secTeam.TeamID(), 200);
-    ASSERT_NE(secTeam.NumberOfWrestlers(), 0);
     ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
+    ASSERT_NE(secTeam.NumberOfWrestlers(), 0);
 
     for(int x = 0; x < defTeam.GetNumberOfWeightClasses(); x++)
     {
-        ASSERT_NE(defTeam.GetWrestlersAt(x).size(), 0);
-        ASSERT_NE(secTeam.GetWrestlersAt(x).size(), 0);
+        ASSERT_NE(defTeam.GetWrestlersAt(x)->size(), 0);
+        ASSERT_NE(secTeam.GetWrestlersAt(x)->size(), 0);
+    }
+
+    for(int x = 0; x < defTeam.GetNumberOfWeightClasses(); x++)
+    {
+        int startSize = defTeam.GetWrestlersAt(x)->size();
+        while(!defTeam.GetWrestlersAt(x)->empty())
+        {
+            ASSERT_TRUE(defTeam.GetWrestlersAt(x)->top().ID() >= defTeam.TeamID()
+                && defTeam.GetWrestlersAt(x)->top().ID() < (defTeam.TeamID()+100));
+
+            defTeam.GetWrestlersAt(x)->pop();
+            ASSERT_EQ(startSize, defTeam.GetWrestlersAt(x)->size()+1);
+            startSize--;
+        }
     }
 }
-
-TEST(TestTeam, TestInitVector)
-{
-    Team defTeam;
-
-    ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
-}
-
+/*
 TEST(TestTeam, TestAddWrestler)
 {
     Team defTeam;
@@ -36,7 +45,29 @@ TEST(TestTeam, TestAddWrestler)
 
     int startingNum = defTeam.NumberOfWrestlers();
     defTeam.AddWrestler(*addWrestler);
-    ASSERT_EQ(startingNum+1, defTeam.NumberOfWrestlers());
+    ASSERT_EQ(defTeam.NumberOfWrestlers(), startingNum+1);
+    delete addWrestler;
+
+    // Location number 7
+    int sevenCount = defTeam.GetWrestlersAt(7).size();
+    addWrestler = new Wrestler(0, 145);
+    defTeam.AddWrestler(*addWrestler);
+    ASSERT_EQ(defTeam.GetWrestlersAt(7).size(), sevenCount+1);
+    //std::cout << addWrestler->toString() << std::endl;
+
+    for(int x = 0; x < defTeam.GetWrestlersAt(7).size(); x++)
+    {
+        //std::cout << defTeam.GetWrestlersAt(7).top().toString() << std::endl;
+        if(defTeam.GetWrestlersAt(7).top().Ability() == addWrestler->Ability()) {
+            // End this test as a pass
+            return;
+        }
+        else {
+            //std::cout << "pop" << std::endl;
+            defTeam.GetWrestlersAt(7).pop();
+        }
+    }
+    FAIL() << "Data lost";
 }
 
 TEST(TestTeam, TestRecords)
@@ -69,3 +100,4 @@ TEST(TestTeam, TestRecords)
     ASSERT_EQ(defTeam.GetWinIDs().front(), 235);
     ASSERT_EQ(defTeam.GetWinIDs().back(), temp->ID());
 }
+*/
