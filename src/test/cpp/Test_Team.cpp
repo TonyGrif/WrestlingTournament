@@ -8,14 +8,17 @@ TEST(TestTeam, TestDefaultConstructor)
 
     ASSERT_EQ(defTeam.TeamID(), 100);
     ASSERT_NE(defTeam.NumberOfWrestlers(), 0);
+    ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
 
     Team secTeam;
     ASSERT_EQ(secTeam.TeamID(), 200);
     ASSERT_NE(secTeam.NumberOfWrestlers(), 0);
+    ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
 
     for(int x = 0; x < defTeam.GetNumberOfWeightClasses(); x++)
     {
         ASSERT_NE(defTeam.GetWrestlersAt(x).size(), 0);
+        ASSERT_NE(secTeam.GetWrestlersAt(x).size(), 0);
     }
 }
 

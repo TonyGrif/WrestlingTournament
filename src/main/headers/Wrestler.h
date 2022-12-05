@@ -56,7 +56,7 @@ class Wrestler
          * @brief Set the weight of this Wrestler.
          * 
          * Set weight while ensuring the number is non-negative.
-         * If the weight is negative, set to 100 (throw away number).
+         * If the weight is negative, set to 121 (throw away number).
          * 
          * @param w Integer.
          */
@@ -99,7 +99,7 @@ class Wrestler
          * @param i Integer.
          */
         void ID(int i) {
-            this->id = i;
+            i < 0 ? this->id = 0 : this->id = i;
         }
 
         /**

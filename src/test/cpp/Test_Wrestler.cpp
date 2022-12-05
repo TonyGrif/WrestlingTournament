@@ -37,7 +37,7 @@ TEST(TestWrestler, TestBothConstructor)
     ASSERT_NE(w.Age(), 0);
     ASSERT_TRUE(w.Age() >= 13 || w.Age() <= 17);
 
-    ASSERT_TRUE(w.Weight() == 120);
+    ASSERT_EQ(w.Weight(), 120);
 
     ASSERT_TRUE(w.Ability() > -1);
 
@@ -64,22 +64,6 @@ TEST(TestWrestler, TestAge)
     ASSERT_EQ(defWrestler.Age(), 17);
 }
 
-TEST(TestWrestler, TestAbility)
-{
-    Wrestler defWrestler;
-
-    ASSERT_NE(defWrestler.Ability(), 0);
-
-    defWrestler.Ability(100);
-    ASSERT_EQ(defWrestler.Ability(), 100);
-    defWrestler.Ability(150);
-    ASSERT_EQ(defWrestler.Ability(), 150);
-
-    defWrestler.Ability(-43);
-    ASSERT_NE(defWrestler.Ability(), -43);
-    ASSERT_EQ(defWrestler.Ability(), 0);
-}
-
 TEST(TestWrestler, TestWeight)
 {
     Wrestler defWrestler;
@@ -96,6 +80,22 @@ TEST(TestWrestler, TestWeight)
     ASSERT_EQ(defWrestler.Weight(), 121);
 }
 
+TEST(TestWrestler, TestAbility)
+{
+    Wrestler defWrestler;
+
+    ASSERT_NE(defWrestler.Ability(), 0);
+
+    defWrestler.Ability(100);
+    ASSERT_EQ(defWrestler.Ability(), 100);
+    defWrestler.Ability(150);
+    ASSERT_EQ(defWrestler.Ability(), 150);
+
+    defWrestler.Ability(-43);
+    ASSERT_NE(defWrestler.Ability(), -43);
+    ASSERT_EQ(defWrestler.Ability(), 0);
+}
+
 TEST(TestWrestler, TestID)
 {
     Wrestler defWrestler;
@@ -104,6 +104,10 @@ TEST(TestWrestler, TestID)
 
     defWrestler.ID(103);
     ASSERT_TRUE(defWrestler.ID() == 103);
+
+    defWrestler.ID(-35);
+    ASSERT_NE(defWrestler.ID(), -35);
+    ASSERT_EQ(defWrestler.ID(), 0);
 }
 
 TEST(TestWrestler, TestLessThan)
