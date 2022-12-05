@@ -44,6 +44,12 @@ class Team
             return this->weightClasses.size();
         }
 
+        /**
+         * @brief Get the Westlers within a particular weight class queue.
+         * 
+         * @param loc of the priority queue desired.
+         * @return Wrestler_Collection*.
+         */
         Wrestler_Collection* GetWrestlersAt(int loc) {
             Wrestler_Collection* wc = &this->weightClasses[loc].pq;
             return wc;
@@ -151,6 +157,9 @@ class Team
             Wrestler_Collection pq;
         };
 
+        /**
+         * @brief Collection of Weight Classes.
+         */
         std::vector<WeightClass> weightClasses;
 
         /**
