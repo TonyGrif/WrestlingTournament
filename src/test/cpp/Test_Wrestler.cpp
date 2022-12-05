@@ -37,7 +37,7 @@ TEST(TestWrestler, TestBothConstructor)
     ASSERT_NE(w.Age(), 0);
     ASSERT_TRUE(w.Age() >= 13 || w.Age() <= 17);
 
-    ASSERT_TRUE(w.Weight() > 0);
+    ASSERT_TRUE(w.Weight() == 120);
 
     ASSERT_TRUE(w.Ability() > -1);
 

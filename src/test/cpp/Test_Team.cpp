@@ -34,8 +34,6 @@ TEST(TestTeam, TestAddWrestler)
     int startingNum = defTeam.NumberOfWrestlers();
     defTeam.AddWrestler(*addWrestler);
     ASSERT_EQ(startingNum+1, defTeam.NumberOfWrestlers());
-
-    FAIL() << "Not added to collection yet";
 }
 
 TEST(TestTeam, TestRecords)

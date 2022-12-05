@@ -37,7 +37,6 @@ void Team::AddWrestler(Wrestler w)
 {
     int loc = this->FindWeightClass(w);
     this->weightClasses[loc].pq.push(w);
-    std::cout << loc << std::endl;
 
     this->numOfWrestlers++;
 }
@@ -65,7 +64,7 @@ int Team::FindWeightClass(const Wrestler& w) const
 {
     int distance = abs(w.Weight() - this->weightClasses[0].weight);
 
-    for(int x = 1; x < this->GetNumberOfWeightClasses(); x++)
+    for(int x = 1; x < this->GetNumberOfWeightClasses()+1; x++)
     {
         if(abs(w.Weight() - this->weightClasses[x].weight) > distance) {
             return x-1;
@@ -74,5 +73,6 @@ int Team::FindWeightClass(const Wrestler& w) const
             distance = abs(w.Weight() - this->weightClasses[x].weight);
         }
     }
+
     return this->GetNumberOfWeightClasses();
 }

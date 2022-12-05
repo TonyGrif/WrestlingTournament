@@ -10,7 +10,7 @@
 #include "Wrestler.h"
 
 /**
- * @brief Static integer to set each individual team ID number
+ * @brief Static integer to set each individual team ID number.
  * 
  * Incremented by 100 each time.
  * All team members will use this as a starting point for their own numbers.
