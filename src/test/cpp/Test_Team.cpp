@@ -2,8 +2,6 @@
 
 #include "../../main/headers/Team.h"
 
-#include <iostream>
-
 TEST(TestTeam, TestDefaultConstructor)
 {
     Team defTeam;
@@ -68,13 +66,11 @@ TEST(TestTeam, TestAddWrestler)
 
     for(int x = 0; x < defTeam.GetWrestlersAt(7)->size(); x++)
     {
-        //std::cout << defTeam.GetWrestlersAt(7).top().toString() << std::endl;
         if(defTeam.GetWrestlersAt(7)->top().Ability() == addWrestler->Ability()) {
             // End this test as a pass
             return;
         }
         else {
-            //std::cout << "pop" << std::endl;
             defTeam.GetWrestlersAt(7)->pop();
         }
     }

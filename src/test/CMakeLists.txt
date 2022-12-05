@@ -15,6 +15,7 @@ set(TESTS
     cpp/main.cpp
     cpp/Test_Wrestler.cpp
     cpp/Test_Team.cpp
+    cpp/Test_Tournament.cpp
     )
 
 add_executable(${PROJECT_NAME}_Test ${TESTS})
