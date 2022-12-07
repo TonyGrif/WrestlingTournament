@@ -24,10 +24,18 @@ TEST(TestWrestler, TestNonDefaultConstructor)
     ASSERT_TRUE(idWrestler.Age() >= 13 || idWrestler.Age() <= 17);
 
     ASSERT_TRUE(idWrestler.Weight() > 0);
-
     ASSERT_TRUE(idWrestler.Ability() > -1);
-
     ASSERT_EQ(idWrestler.ID(), 204);
+
+    Wrestler wrongIDW(-42);
+    ASSERT_NE(wrongIDW.Age(), 0);
+    ASSERT_TRUE(wrongIDW.Age() >= 13 || wrongIDW.Age() <= 17);
+
+    ASSERT_TRUE(wrongIDW.Weight() > 0);
+    ASSERT_TRUE(wrongIDW.Ability() > -1);
+
+    ASSERT_NE(wrongIDW.ID(), -42);
+    ASSERT_EQ(wrongIDW.ID(), 0);
 }
 
 TEST(TestWrestler, TestBothConstructor)
@@ -38,10 +46,30 @@ TEST(TestWrestler, TestBothConstructor)
     ASSERT_TRUE(w.Age() >= 13 || w.Age() <= 17);
 
     ASSERT_EQ(w.Weight(), 120);
-
     ASSERT_TRUE(w.Ability() > -1);
-
     ASSERT_EQ(w.ID(), 407);
+
+    Wrestler badID(-47, 220);
+
+    ASSERT_NE(badID.Age(), 0);
+    ASSERT_TRUE(badID.Age() >= 13 || badID.Age() <= 17);
+
+    ASSERT_EQ(badID.Weight(), 220);
+    ASSERT_TRUE(badID.Ability() > -1);
+
+    ASSERT_NE(badID.ID(), -47);
+    ASSERT_EQ(badID.ID(), 0);
+
+    Wrestler badWeight(458, -220);
+
+    ASSERT_NE(badWeight.Age(), 0);
+    ASSERT_TRUE(badWeight.Age() >= 13 || badWeight.Age() <= 17);
+
+    ASSERT_NE(badWeight.Weight(), -220);
+    ASSERT_EQ(badWeight.Weight(), 121);    
+
+    ASSERT_TRUE(badWeight.Ability() > -1);
+    ASSERT_EQ(badWeight.ID(), 458);
 }
 
 TEST(TestWrestler, TestAge)
