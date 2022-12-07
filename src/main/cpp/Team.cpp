@@ -33,13 +33,30 @@ Team::Team()
     TEAM_ID_NUMBER += 100;
 }
 
-void Team::AddWrestler(Wrestler w)
+void Team::AddWrestler(Wrestler& w)
 {
     int loc = this->FindWeightClass(w);
     w.Weight(this->weightClasses[loc].weight);
     this->weightClasses[loc].pq.push(w);
 
     this->numOfWrestlers++;
+}
+
+int Team::FindWeightClass(const Wrestler& w) const
+{
+    int distance = abs(w.Weight() - this->weightClasses[0].weight);
+
+    for(int x = 1; x < this->GetNumberOfWeightClasses()+1; x++)
+    {
+        if(abs(w.Weight() - this->weightClasses[x].weight) > distance) {
+            return x-1;
+        }
+        else {
+            distance = abs(w.Weight() - this->weightClasses[x].weight);
+        }
+    }
+
+    return this->GetNumberOfWeightClasses();
 }
 
 void Team::InitializeVector()
@@ -59,21 +76,4 @@ void Team::InitializeVector()
     weightClasses.push_back(*new WeightClass(195));
     weightClasses.push_back(*new WeightClass(220));
     weightClasses.push_back(*new WeightClass(285));
-}
-
-int Team::FindWeightClass(const Wrestler& w) const
-{
-    int distance = abs(w.Weight() - this->weightClasses[0].weight);
-
-    for(int x = 1; x < this->GetNumberOfWeightClasses()+1; x++)
-    {
-        if(abs(w.Weight() - this->weightClasses[x].weight) > distance) {
-            return x-1;
-        }
-        else {
-            distance = abs(w.Weight() - this->weightClasses[x].weight);
-        }
-    }
-
-    return this->GetNumberOfWeightClasses();
 }

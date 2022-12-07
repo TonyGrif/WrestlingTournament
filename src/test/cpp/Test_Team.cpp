@@ -6,25 +6,26 @@ TEST(TestTeam, TestDefaultConstructor)
 {
     Team defTeam;
 
-    ASSERT_EQ(defTeam.TeamID(), 100);
-    ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
+    ASSERT_TRUE(defTeam.TeamID() % 100 == 0);
     ASSERT_NE(defTeam.NumberOfWrestlers(), 0);
+    ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
     ASSERT_EQ(defTeam.CurrentScore(), 0);
+    ASSERT_EQ(defTeam.GetWins(), 0);
+    ASSERT_EQ(defTeam.GetLosses(), 0);
 
     Team secTeam;
-    ASSERT_EQ(secTeam.TeamID(), 200);
-    ASSERT_EQ(defTeam.GetNumberOfWeightClasses(), 15);
+    ASSERT_TRUE(secTeam.TeamID() % 100 == 0);
     ASSERT_NE(secTeam.NumberOfWrestlers(), 0);
-    ASSERT_EQ(defTeam.CurrentScore(), 0);
+    ASSERT_EQ(secTeam.GetNumberOfWeightClasses(), 15);
+    ASSERT_EQ(secTeam.CurrentScore(), 0);
+    ASSERT_EQ(secTeam.GetWins(), 0);
+    ASSERT_EQ(secTeam.GetLosses(), 0);
 
     for(int x = 0; x < defTeam.GetNumberOfWeightClasses(); x++)
     {
         ASSERT_NE(defTeam.GetWrestlersAt(x)->size(), 0);
         ASSERT_NE(secTeam.GetWrestlersAt(x)->size(), 0);
-    }
 
-    for(int x = 0; x < defTeam.GetNumberOfWeightClasses(); x++)
-    {
         int startSize = defTeam.GetWrestlersAt(x)->size();
         while(!defTeam.GetWrestlersAt(x)->empty())
         {
@@ -57,6 +58,7 @@ TEST(TestTeam, TestAddWrestler)
     int startingNum = defTeam.NumberOfWrestlers();
     defTeam.AddWrestler(*addWrestler);
     ASSERT_EQ(defTeam.NumberOfWrestlers(), startingNum+1);
+    startingNum++;
     delete addWrestler;
 
     // Location number 7
@@ -65,6 +67,7 @@ TEST(TestTeam, TestAddWrestler)
     addWrestler->Ability(defTeam.GetWrestlersAt(7)->top().Ability()+1);
     defTeam.AddWrestler(*addWrestler);
     ASSERT_EQ(defTeam.GetWrestlersAt(7)->size(), sevenCount+1);
+    ASSERT_EQ(defTeam.NumberOfWrestlers(), startingNum+1);
 
     for(int x = 0; x < defTeam.GetWrestlersAt(7)->size(); x++)
     {
@@ -76,6 +79,7 @@ TEST(TestTeam, TestAddWrestler)
             defTeam.GetWrestlersAt(7)->pop();
         }
     }
+    FAIL() << "Wrestler not found post-add function";
 }
 
 TEST(TestTeam, TestRecords)
@@ -126,6 +130,9 @@ TEST(TestTeam, TestScore)
     defTeam.IncrementScore(7);
     ASSERT_EQ(defTeam.CurrentScore(), 7);
 
+    defTeam.IncrementScore(4);
+    ASSERT_EQ(defTeam.CurrentScore(), 11);
+
     defTeam.IncrementScore(-6);
-    ASSERT_EQ(defTeam.CurrentScore(), 7);
+    ASSERT_EQ(defTeam.CurrentScore(), 11);
 }

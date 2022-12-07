@@ -17,10 +17,20 @@
  */
 static int TEAM_ID_NUMBER = 100;
 
+/**
+ * @brief Team class responsible for maintenence of a Wrestler collection and W/L record.
+ */
 class Team
 {
     public:
+        /**
+         * @brief Storage collection of IDs won or lost to.
+         */
         using ID_Collection = std::list<int>;
+
+        /**
+         * @brief Storage collection of Wrestlers making up this team.
+         */
         using Wrestler_Collection = std::priority_queue<Wrestler>;
 
         /**
@@ -33,7 +43,16 @@ class Team
          * 
          * @param w Wrestler object.
          */
-        void AddWrestler(Wrestler w);
+        void AddWrestler(Wrestler& w);
+
+        /**
+         * @brief Return the number of Wrestlers on this Team.
+         * 
+         * @return Integer.
+         */
+        int NumberOfWrestlers() const {
+            return this->numOfWrestlers;
+        }
 
         /**
          * @brief Get the Number Of Weight Classes object.
@@ -109,15 +128,6 @@ class Team
          */
         const ID_Collection GetLossIDs() const {
             return this->losses.results;
-        }
-
-        /**
-         * @brief Return the number of Wrestlers on this Team.
-         * 
-         * @return Integer.
-         */
-        int NumberOfWrestlers() const {
-            return this->numOfWrestlers;
         }
 
         /**
@@ -209,6 +219,13 @@ class Team
          * @brief Stores the number of loses this team has had.
          */
         Records losses;
+        
+        /**
+         * @brief Team's identification number.
+         * 
+         * Must be determined at creation.
+         */
+        const int teamID;
 
         /**
          * @brief The current score of this Team.
@@ -216,13 +233,6 @@ class Team
          * Resets to zero at the end of every match.
          */
         int currentScore;
-
-        /**
-         * @brief Team's identification number.
-         * 
-         * Must be determined at creation.
-         */
-        const int teamID;
 
         /**
          * @brief The number of Wrestlers contained in this Team.
@@ -235,20 +245,20 @@ class Team
         static std::default_random_engine eng;
 
         /**
-         * @brief Initialize the vector based on the weight classes provided.
-         * 
-         * Not at all efficient, but unable to do another way.
-         * BETTER WAY - read from text file, gather information from there.
-         */
-        void InitializeVector();
-
-        /**
          * @brief Find the correct weight class for supplied Wrestler.
          * 
          * @param w Wrestler object.
          * @return Integer, location in the Weight Class collection.
          */
         int FindWeightClass(const Wrestler& w) const;
+
+        /**
+         * @brief Initialize the vector based on the weight classes provided.
+         * 
+         * Not at all efficient, but unable to do another way.
+         * BETTER WAY - read from text file, gather information from there.
+         */
+        void InitializeVector();
 };
 
 #endif
