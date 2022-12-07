@@ -33,7 +33,7 @@ class Wrestler
         /**
          * @brief Set the age of this Wrestler.
          * 
-         * Set the age of this Wrestler and ensure if falls within the desired range (13 to 17).
+         * Set the age of this Wrestler and ensure it falls within the desired range (13 to 17).
          * 
          * @param a Integer.
          */
@@ -117,11 +117,11 @@ class Wrestler
          * Wrestlers will be sorted based on their ability score.
          * 
          * @param lhs Another Wrestler.
-         * @return true if ability score is less than.
-         * @return false if ability score is greater than.
+         * @return true if ability score is less than rhs ability.
+         * @return false if ability score is greater than rhs ability.
          */
-        bool operator<(const Wrestler& lhs) const {
-            return this->Ability() < lhs.Ability() ? true : false;
+        bool operator<(const Wrestler& rhs) const {
+            return this->Ability() < rhs.Ability() ? true : false;
         }
 
         /**
@@ -153,6 +153,8 @@ class Wrestler
     private:
         /**
          * @brief Generate a standard weight based on the age.
+         * 
+         * Age based generation, does not check age falls within the necessary bounds.
          * 
          * @return Integer.
          */

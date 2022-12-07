@@ -75,11 +75,16 @@ TEST(TestWrestler, TestBothConstructor)
 TEST(TestWrestler, TestAge)
 {
     Wrestler defWrestler;
+    int startingWeight = defWrestler.Weight();
+    int startingAbility = defWrestler.Ability(); 
+    int startingID = defWrestler.ID();
 
     ASSERT_NE(defWrestler.Age(), 0);
 
     defWrestler.Age(13);
     ASSERT_EQ(defWrestler.Age(), 13);
+    defWrestler.Age(15);
+    ASSERT_EQ(defWrestler.Age(), 15);
     defWrestler.Age(17);
     ASSERT_EQ(defWrestler.Age(), 17);
 
@@ -90,11 +95,18 @@ TEST(TestWrestler, TestAge)
     defWrestler.Age(20);
     ASSERT_NE(defWrestler.Age(), 20);
     ASSERT_EQ(defWrestler.Age(), 17);
+
+    ASSERT_EQ(startingWeight, defWrestler.Weight());
+    ASSERT_EQ(startingAbility, defWrestler.Ability());
+    ASSERT_EQ(startingID, defWrestler.ID());
 }
 
 TEST(TestWrestler, TestWeight)
 {
     Wrestler defWrestler;
+    int startingAge = defWrestler.Age();
+    int startingAbility = defWrestler.Ability(); 
+    int startingID = defWrestler.ID();
 
     ASSERT_TRUE(defWrestler.Weight() > 0);
 
@@ -106,13 +118,20 @@ TEST(TestWrestler, TestWeight)
     defWrestler.Weight(-20);
     ASSERT_NE(defWrestler.Weight(), -20);
     ASSERT_EQ(defWrestler.Weight(), 121);
+
+    ASSERT_EQ(startingAge, defWrestler.Age());
+    ASSERT_EQ(startingAbility, defWrestler.Ability());
+    ASSERT_EQ(startingID, defWrestler.ID());
 }
 
 TEST(TestWrestler, TestAbility)
 {
     Wrestler defWrestler;
+    int startingAge = defWrestler.Age();
+    int startingWeight = defWrestler.Weight(); 
+    int startingID = defWrestler.ID();
 
-    ASSERT_NE(defWrestler.Ability(), 0);
+    ASSERT_TRUE(defWrestler.Ability()> -1);
 
     defWrestler.Ability(100);
     ASSERT_EQ(defWrestler.Ability(), 100);
@@ -122,11 +141,18 @@ TEST(TestWrestler, TestAbility)
     defWrestler.Ability(-43);
     ASSERT_NE(defWrestler.Ability(), -43);
     ASSERT_EQ(defWrestler.Ability(), 0);
+
+    ASSERT_EQ(startingAge, defWrestler.Age());
+    ASSERT_EQ(startingWeight, defWrestler.Weight());
+    ASSERT_EQ(startingID, defWrestler.ID());
 }
 
 TEST(TestWrestler, TestID)
 {
     Wrestler defWrestler;
+    int startingAge = defWrestler.Age();
+    int startingWeight = defWrestler.Weight(); 
+    int startingAbility = defWrestler.Ability();
 
     ASSERT_TRUE(defWrestler.ID() == 0);
 
@@ -136,19 +162,34 @@ TEST(TestWrestler, TestID)
     defWrestler.ID(-35);
     ASSERT_NE(defWrestler.ID(), -35);
     ASSERT_EQ(defWrestler.ID(), 0);
+
+    ASSERT_EQ(startingAge, defWrestler.Age());
+    ASSERT_EQ(startingWeight, defWrestler.Weight());
+    ASSERT_EQ(startingAbility, defWrestler.Ability());
 }
 
 TEST(TestWrestler, TestLessThan)
 {
-    Wrestler small, big;
+    Wrestler lhs, rhs;
 
-    small.Ability(100);
-    big.Ability(150);
+    lhs.Ability(100);
+    rhs.Ability(150);
+    ASSERT_TRUE(lhs < rhs);
 
-    ASSERT_TRUE(small < big);
+    lhs.Ability(200);
+    ASSERT_FALSE(lhs < rhs);
 
-    small.Ability(200);
-    ASSERT_FALSE(small < big);
+    rhs.Age(17);
+    lhs.Age(13);
+    ASSERT_FALSE(lhs < rhs);
+
+    rhs.ID(500);
+    lhs.ID(0);
+    ASSERT_FALSE(lhs < rhs);
+
+    rhs.Weight(300);
+    lhs.Weight(121);
+    ASSERT_FALSE(lhs < rhs);
 }
 
 TEST(TestWrestler, TestEquivalence)
@@ -185,4 +226,13 @@ TEST(TestWrestler, TestToString)
     ASSERT_TRUE(checkNonDefString.find(std::to_string(nonDefW.Age())) != std::string::npos);
     ASSERT_TRUE(checkNonDefString.find(std::to_string(nonDefW.Weight())) != std::string::npos);
     ASSERT_TRUE(checkNonDefString.find(std::to_string(nonDefW.Ability())) != std::string::npos);
+
+    Wrestler doubleParam(204, 100);
+
+    std::string checkDoubleParam = doubleParam.toString();
+
+    ASSERT_TRUE(checkDoubleParam.find(std::to_string(doubleParam.ID())) != std::string::npos);
+    ASSERT_TRUE(checkDoubleParam.find(std::to_string(doubleParam.Age())) != std::string::npos);
+    ASSERT_TRUE(checkDoubleParam.find(std::to_string(doubleParam.Weight())) != std::string::npos);
+    ASSERT_TRUE(checkDoubleParam.find(std::to_string(doubleParam.Ability())) != std::string::npos);
 }
