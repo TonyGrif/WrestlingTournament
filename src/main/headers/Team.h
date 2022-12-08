@@ -148,6 +148,10 @@ class Team
             return this->currentScore;
         }
 
+        void ResetScore() {
+            this->currentScore = 0;
+        }
+
         /**
          * @brief Return this Team's identification number.
          * 

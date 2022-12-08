@@ -1,9 +1,9 @@
 #ifndef TOURNAMENT_H
 #define TOURNAMENT_H
 
-#include "Team.h"
+#include <initializer_list>
 
-#include <iostream>
+#include "Team.h"
 
 class Tournament
 {
@@ -16,14 +16,28 @@ class Tournament
         Tournament();
 
         /**
-         * @brief Conduct a match between 2 teams.
+         * @brief Construct a new Tournament object with a selection of teams.
          * 
-         * Pair the front of each pq (same weight class) and have the fronts conduct a bout.
+         * The collection size must be a multiple of two.
+         * If these are not met, will add Teams until this is true.
          * 
-         * @param one First Team.
-         * @param two Second Team.
+         * @param t Initializer list of Teams.
          */
-        void ConductMatch(Team& one, Team& two);
+        Tournament(std::initializer_list<Team> t);
+
+        /**
+         * @brief Construct a new Tournament object with a list of Teams.
+         * 
+         * The collection must be even.
+         */
+        Tournament(std::list<Team>);
+
+        /**
+         * @brief Conduct the tournament with all the teams involved.
+         * 
+         * @return Team* to the winning team.
+         */
+        Team* ConductTournament();
 
         /**
          * @brief Get the Number Of Team objects in collection.
@@ -50,6 +64,16 @@ class Tournament
          * @brief Collection of Teams.
          */
         std::vector<Team> Teams;
+
+        /**
+         * @brief Conduct a match between 2 teams.
+         * 
+         * Pair the front of each pq (same weight class) and have the fronts conduct a bout.
+         * 
+         * @param one First Team.
+         * @param two Second Team.
+         */
+        void ConductMatch(Team& one, Team& two);
 
         /**
          * @brief Conduct a bout between 2 Wrestlers.

@@ -10,6 +10,54 @@ Tournament::Tournament()
     }
 }
 
+Tournament::Tournament(std::initializer_list<Team> t)
+{
+    for(auto i : t)
+    {
+        this->Teams.push_back(i);
+    }
+
+    // Odd number
+    if((this->GetNumberOfTeams() % 2) != 0)
+    {
+        this->Teams.push_back(*new Team);
+    }
+}
+
+Tournament::Tournament(std::list<Team> t)
+{
+    for(auto i : t)
+    {
+        this->Teams.push_back(i);
+    }
+
+    if(this->GetNumberOfTeams() % 2 != 0)
+    {
+        this->Teams.push_back(*new Team);
+    }
+}
+
+Team* Tournament::ConductTournament()
+{
+    int counter = 0;
+    while(counter != this->GetNumberOfTeams())
+    {
+        this->ConductMatch(*this->GetTeamAt(counter), *this->GetTeamAt(counter+1));
+
+        counter += 2;
+    }
+
+    int loc = 0;
+    for(int x = 0; x < this->GetNumberOfTeams(); x++)
+    {
+        if(this->GetTeamAt(loc)->CurrentScore() < this->GetTeamAt(x)->CurrentScore()) {
+            loc = x;
+        }
+    }
+
+    return this->GetTeamAt(loc);
+}
+
 void Tournament::ConductMatch(Team& one, Team& two)
 {
     // Must have the same number of weight class to work.
