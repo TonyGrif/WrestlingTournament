@@ -28,19 +28,6 @@ class Wrestler
         Wrestler(int id, int w);
 
         /**
-         * @brief Set the age of this Wrestler.
-         * 
-         * Set the age of this Wrestler and ensure it falls within the desired range (13 to 17).
-         * 
-         * @param a Integer.
-         */
-        void Age(int a) {
-            if(a < 13) { this->age  = 13; }
-            else if(a > 17) { this->age = 17; }
-            else { this->age = a; }
-        }
-
-        /**
          * @brief Return the age of this Wrestler.
          * 
          * @return Integer.
@@ -156,6 +143,19 @@ class Wrestler
          * @return Integer.
          */
         int GenerateWeight() const;
+
+        /**
+         * @brief Set the age of this Wrestler.
+         * 
+         * Set the age of this Wrestler and ensure it falls within the desired range (13 to 17).
+         * 
+         * @param a Integer.
+         */
+        void Age(int a) {
+            if(a < 13) { this->age  = 13; }
+            else if(a > 17) { this->age = 17; }
+            else { this->age = a; }
+        }
 
         /**
          * @brief Wrestler's age.

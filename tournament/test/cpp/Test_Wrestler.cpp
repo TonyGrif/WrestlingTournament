@@ -70,30 +70,9 @@ TEST(TestWrestler, TestBothConstructor)
 TEST(TestWrestler, TestAge)
 {
     Wrestler defWrestler;
-    int startingWeight = defWrestler.Weight();
-    int startingAbility = defWrestler.Ability(); 
-    int startingID = defWrestler.ID();
 
     ASSERT_NE(defWrestler.Age(), 0);
-
-    defWrestler.Age(13);
-    ASSERT_EQ(defWrestler.Age(), 13);
-    defWrestler.Age(15);
-    ASSERT_EQ(defWrestler.Age(), 15);
-    defWrestler.Age(17);
-    ASSERT_EQ(defWrestler.Age(), 17);
-
-    defWrestler.Age(4);
-    ASSERT_NE(defWrestler.Age(), 4);
-    ASSERT_EQ(defWrestler.Age(), 13);
-
-    defWrestler.Age(20);
-    ASSERT_NE(defWrestler.Age(), 20);
-    ASSERT_EQ(defWrestler.Age(), 17);
-
-    ASSERT_EQ(startingWeight, defWrestler.Weight());
-    ASSERT_EQ(startingAbility, defWrestler.Ability());
-    ASSERT_EQ(startingID, defWrestler.ID());
+    ASSERT_TRUE(defWrestler.Age() >= 13 || defWrestler.Age() <= 17);
 }
 
 TEST(TestWrestler, TestWeight)
@@ -196,13 +175,16 @@ TEST(TestWrestler, TestEquivalence)
 
     ASSERT_FALSE(w1 == w2);
 
-    w2.Ability(w1.Ability());
-    w2.Age(w1.Age());
-    w2.Weight(w1.Weight());
-    ASSERT_FALSE(w1 == w2);
-
-    w2.ID(w1.ID());
-    ASSERT_TRUE(w1 == w2);
+    Wrestler w3;
+    w3.Ability(w1.Ability());
+    w3.Weight(w1.Weight());
+    
+    if(w1.Age() != w3.Age()) {
+        ASSERT_FALSE(w1 == w3);
+    }
+    else {
+        ASSERT_TRUE(w1 == w3);
+    }
 }
 
 TEST(TestWrestler, TestToString)
