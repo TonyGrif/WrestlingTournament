@@ -6,6 +6,8 @@
 
 /**
  * @brief Wrestler class responsible for all the information that makes up a Wrestler.
+ * 
+ * Contains the age, weight, ability score, and ID of a Wrestler.
  */
 class Wrestler
 {
@@ -165,7 +167,7 @@ class Wrestler
         /**
          * @brief Wrestler's weight.
          * 
-         * Determined based on the age of this Wrestler.
+         * Determined, in part, based on the age of this Wrestler.
          */
         int weight;
 

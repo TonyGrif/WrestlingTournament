@@ -1,13 +1,11 @@
 #include "../headers/Wrestler.h"
 
-std::default_random_engine Wrestler::engine = std::default_random_engine(time(NULL));
+std::default_random_engine Wrestler::engine = std::default_random_engine(std::random_device{}());
 
 Wrestler::Wrestler(int id)
 {
     std::uniform_int_distribution<> uid(13, 17);
     
-    // Throw away value
-    uid(engine);
     this->Age(uid(engine));
 
     this->Weight(this->GenerateWeight());
@@ -22,8 +20,6 @@ Wrestler::Wrestler(int id, int w)
 {
     std::uniform_int_distribution<> uid(13, 17);
     
-    // Throw away value
-    uid(engine);
     this->Age(uid(engine));
 
     this->Weight(w);

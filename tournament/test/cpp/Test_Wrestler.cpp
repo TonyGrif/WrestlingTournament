@@ -114,6 +114,10 @@ TEST(TestWrestler, TestWeight)
     ASSERT_NE(defWrestler.Weight(), -20);
     ASSERT_EQ(defWrestler.Weight(), 121);
 
+    defWrestler.Weight(0);
+    ASSERT_NE(defWrestler.Weight(), 0);
+    ASSERT_EQ(defWrestler.Weight(), 121);
+
     ASSERT_EQ(startingAge, defWrestler.Age());
     ASSERT_EQ(startingAbility, defWrestler.Ability());
     ASSERT_EQ(startingID, defWrestler.ID());
@@ -174,8 +178,7 @@ TEST(TestWrestler, TestLessThan)
     lhs.Ability(200);
     ASSERT_FALSE(lhs < rhs);
 
-    rhs.Age(17);
-    lhs.Age(13);
+    lhs.Ability(150);
     ASSERT_FALSE(lhs < rhs);
 
     rhs.ID(500);
