@@ -5,5 +5,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project(WrestlingTournament VERSION 1.0)
 
-add_subdirectory(src/main)
-add_subdirectory(src/test)
+add_subdirectory(tournament/main)
+add_subdirectory(tournament/test)
