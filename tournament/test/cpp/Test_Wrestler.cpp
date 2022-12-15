@@ -8,16 +8,10 @@ TEST(TestWrestler, TestDefaultConstructor)
 
     ASSERT_NE(defWrestler.Age(), 0);
     ASSERT_TRUE(defWrestler.Age() >= 13 || defWrestler.Age() <= 17);
-
     ASSERT_TRUE(defWrestler.Weight() > 0);
-
     ASSERT_TRUE(defWrestler.Ability() > -1);
-
     ASSERT_EQ(defWrestler.ID(), 0);
-}
 
-TEST(TestWrestler, TestNonDefaultConstructor)
-{
     Wrestler idWrestler(204);
 
     ASSERT_NE(idWrestler.Age(), 0);
@@ -28,6 +22,7 @@ TEST(TestWrestler, TestNonDefaultConstructor)
     ASSERT_EQ(idWrestler.ID(), 204);
 
     Wrestler wrongIDW(-42);
+
     ASSERT_NE(wrongIDW.Age(), 0);
     ASSERT_TRUE(wrongIDW.Age() >= 13 || wrongIDW.Age() <= 17);
 

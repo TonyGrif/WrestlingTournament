@@ -12,15 +12,10 @@ class Wrestler
     public:
         /**
          * @brief Construct a new Wrestler object.
-         */
-        Wrestler();
-
-        /**
-         * @brief Construct a new Wrestler object.
          * 
-         * @param id Integer to set the id.
+         * @param id Integer to set the ID.
          */
-        Wrestler(int id);
+        Wrestler(int id = 0);
 
         /**
          * @brief Construct a new Wrestler object.

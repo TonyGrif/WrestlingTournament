@@ -2,22 +2,6 @@
 
 std::default_random_engine Wrestler::engine = std::default_random_engine(time(NULL));
 
-Wrestler::Wrestler()
-{
-    std::uniform_int_distribution<> uid(13, 17);
-    
-    // Throw away value
-    uid(engine);
-    this->Age(uid(engine));
-
-    this->Weight(this->GenerateWeight());
-
-    std::normal_distribution<> nd{100, 15};
-    this->Ability(nd(engine));
-
-    this->ID(0);
-}
-
 Wrestler::Wrestler(int id)
 {
     std::uniform_int_distribution<> uid(13, 17);
